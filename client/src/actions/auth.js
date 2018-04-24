@@ -1,4 +1,4 @@
-import { RSAA } from 'redux-api-middleware';
+import {RSAA} from 'redux-api-middleware';
 
 export const LOGIN_REQUEST = '@@jwt/LOGIN_REQUEST';
 export const LOGIN_SUCCESS = '@@jwt/LOGIN_SUCCESS';
@@ -13,21 +13,21 @@ export const login = (username, password) => ({
         endpoint: '/api/auth/token/obtain/',
         method: 'POST',
         body: JSON.stringify({username, password}),
-        headers: { 'Content-Type': 'application/json' },
+        headers: {'Content-Type': 'application/json'},
         types: [
             LOGIN_REQUEST, LOGIN_SUCCESS, LOGIN_FAILURE
         ]
-      }
-})
+    }
+});
 
 export const refreshAccessToken = (token) => ({
     [RSAA]: {
         endpoint: '/api/auth/token/refresh/',
         method: 'POST',
         body: JSON.stringify({refresh: token}),
-        headers: { 'Content-Type': 'application/json' },
+        headers: {'Content-Type': 'application/json'},
         types: [
-          TOKEN_REQUEST, TOKEN_RECEIVED, TOKEN_FAILURE
+            TOKEN_REQUEST, TOKEN_RECEIVED, TOKEN_FAILURE
         ]
     }
-})
+});

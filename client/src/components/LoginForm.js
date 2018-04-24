@@ -7,7 +7,7 @@ export default class LoginForm extends Component {
     state = {
         username: '',
         password: ''
-    }
+    };
 
     handleInputChange = (event) => {
         const target = event.target;
@@ -25,12 +25,12 @@ export default class LoginForm extends Component {
     // }
 
     onSubmit = (event) => {
-        event.preventDefault()
+        event.preventDefault();
         this.props.onSubmit(this.state.username, this.state.password)
     }
 
     render() {
-        const errors = this.props.errors || {}
+        const errors = this.props.errors || {};
 
         return (
             <Jumbotron className="container">
