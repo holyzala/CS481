@@ -28,5 +28,6 @@ urlpatterns = [
     path('api/auth/', include('rest_framework.urls', namespace='rest_framework')),
     path('api/auth/token/obtain/', TokenObtainPairView.as_view()),
     path('api/auth/token/refresh/', TokenRefreshView.as_view()),
+    path('api/users/', views.UserList.as_view()),
     path('api/echo/', views.EchoView.as_view())
 ]
