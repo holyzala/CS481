@@ -18,7 +18,7 @@ export default class LoginForm extends Component {
         this.setState({
             [name]: value
         });
-    }
+    };
 
     // componentDidMount() {
     //     this.primaryInput.focus();
@@ -27,7 +27,7 @@ export default class LoginForm extends Component {
     onSubmit = (event) => {
         event.preventDefault();
         this.props.onSubmit(this.state.username, this.state.password)
-    }
+    };
 
     render() {
         const errors = this.props.errors || {};

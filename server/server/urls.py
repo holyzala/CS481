@@ -18,16 +18,16 @@ from django.views import generic
 from django.urls import path
 from django.conf.urls import include
 from rest_framework.schemas import get_schema_view
-from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
-from movies import views
+from rest_framework_simplejwt.views import TokenRefreshView
+from movies.views import MyTokenObtainPairView, UserList, EchoView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', generic.RedirectView.as_view(url='/api/', permanent=False)),
     path('api/', get_schema_view()),
     path('api/auth/', include('rest_framework.urls', namespace='rest_framework')),
-    path('api/auth/token/obtain/', TokenObtainPairView.as_view()),
+    path('api/auth/token/obtain/', MyTokenObtainPairView.as_view()),
     path('api/auth/token/refresh/', TokenRefreshView.as_view()),
-    path('api/users/', views.UserList.as_view()),
-    path('api/echo/', views.EchoView.as_view())
+    path('api/users/', UserList.as_view()),
+    path('api/echo/', EchoView.as_view())
 ]
