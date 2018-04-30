@@ -29,5 +29,8 @@ urlpatterns = [
     path('api/auth/token/obtain/', TokenObtainPairView.as_view()),
     path('api/auth/token/refresh/', TokenRefreshView.as_view()),
     path('api/users/', views.UserList.as_view()),
-    path('api/echo/', views.EchoView.as_view())
+    path('api/echo/', views.EchoView.as_view()),
+    path('api/movies/',views.GetMyMovieList.as_view()),
+    path('api/movies/<MovieName>/',views.GetMyMovie.as_view()),
+
 ]
