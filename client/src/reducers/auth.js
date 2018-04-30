@@ -32,6 +32,7 @@ export default (state = initialState, action) => {
             };
         case auth.LOGIN_FAILURE:
         case auth.TOKEN_FAILURE:
+        case auth.REGISTER_FAILURE:
             return {
                 access: undefined,
                 refresh: undefined,

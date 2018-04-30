@@ -1,5 +1,5 @@
 from django.contrib.auth.models import User
-from rest_framework import status, views, generics
+from rest_framework import status, views, generics, permissions
 from rest_framework.response import Response
 from rest_framework_simplejwt.views import TokenObtainPairView
 from .serializers import MessageSerializer, MyTokenObtainPairSerializer, UserSerializer
@@ -19,3 +19,4 @@ class MyTokenObtainPairView(TokenObtainPairView):
 class UserList(generics.ListCreateAPIView):
     queryset = User.objects.all()
     serializer_class = UserSerializer
+    permission_classes = [permissions.AllowAny]
