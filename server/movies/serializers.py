@@ -55,4 +55,4 @@ class MessageSerializer(serializers.Serializer):
 class MyMovieSerializer(serializers.ModelSerializer):
         class Meta:
             model = MyMovie
-            fields = '__all__'
+            fields = ('name','purchase_date','location','personal_rating','notes')

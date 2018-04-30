@@ -3,7 +3,7 @@ from rest_framework.response import Response
 from django.contrib.auth.models import User
 from .serializers import UserSerializer, MessageSerializer, MyMovieSerializer
 from .models import MyMovie
-from .permissions import BasePermission
+from .permissions import IsOwner
 from rest_framework import status, views, generics, permissions
 from rest_framework.response import Response
 from rest_framework_simplejwt.views import TokenObtainPairView
@@ -28,14 +28,23 @@ class UserList(generics.ListCreateAPIView):
 
 
 class GetMyMovieList(generics.ListCreateAPIView):
-    queryset = MyMovie.objects.all()
     serializer_class = MyMovieSerializer
+
+    def perform_create(self, serializer):
+        serializer.save(owner=self.request.user)
+
+    def get_queryset(self):
+        user = self.request.user
+        MoviesList = MyMovie.objects.filter(owner=user)
+        return MoviesList
+
 
 class GetMyMovie(generics.RetrieveUpdateDestroyAPIView):
     queryset = MyMovie.objects.all()
     serializer_class = MyMovieSerializer
     lookup_field = 'name'
     lookup_url_kwarg = 'MovieName'
+    permission_classes = (IsOwner,)
 
 
 
