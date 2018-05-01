@@ -12,6 +12,10 @@ export const TOKEN_REQUEST = '@@jwt/TOKEN_REQUEST';
 export const TOKEN_RECEIVED = '@@jwt/TOKEN_RECEIVED';
 export const TOKEN_FAILURE = '@@jwt/TOKEN_FAILURE';
 
+export const LOGOUT = 'LOGOUT';
+
+export const logout = () => ({type: LOGOUT});
+
 export const login = (username, password) => ({
     [RSAA]: {
         endpoint: '/api/auth/token/obtain/',

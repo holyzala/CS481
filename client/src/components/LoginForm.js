@@ -43,7 +43,8 @@ export default class LoginForm extends Component {
 
     onRegister = (event) => {
         event.preventDefault();
-        this.props.onRegister(this.state.username, this.state.password)
+        this.setState({register: false});
+        this.props.onRegister(this.state.username, this.state.password);
     };
 
     cancelRegister = (event) => {

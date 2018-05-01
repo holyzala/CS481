@@ -38,6 +38,8 @@ export default (state = initialState, action) => {
                 refresh: undefined,
                 errors: action.payload.response || {'non_field_errors': action.payload.statusText},
             };
+        case auth.LOGOUT:
+            return initialState;
         default:
             return state
     }

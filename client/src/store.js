@@ -20,14 +20,14 @@ export default (history) => {
             transforms: [persistedFilter]
         },
         rootReducer
-    )
+    );
 
     const store = createStore(
         reducer, {},
         applyMiddleware(apiMiddleware, routerMiddleware(history))
-    )
+    );
 
-    persistStore(store)
+    persistStore(store);
 
     return store
 }
