@@ -1,10 +1,10 @@
 from django.contrib.auth.models import User
 from rest_framework import serializers
+from .models import MyMovie
+
+
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 
-
-class MessageSerializer(serializers.Serializer):
-    message = serializers.CharField()
 
 
 class MyTokenObtainPairSerializer(TokenObtainPairSerializer):
@@ -45,4 +45,14 @@ class UserSerializer(serializers.Serializer):
 class UserSerializer2(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields = '__all__'
+        fields = ('id', 'username')
+
+
+class MessageSerializer(serializers.Serializer):
+    message = serializers.CharField()
+
+
+class MyMovieSerializer(serializers.ModelSerializer):
+        class Meta:
+            model = MyMovie
+            fields = ('name','purchase_date','location','personal_rating','notes')
