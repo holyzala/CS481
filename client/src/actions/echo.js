@@ -7,9 +7,8 @@ export const ECHO_FAILURE = '@@echo/ECHO_FAILURE';
 
 export const echo = (message) => ({
     [RSAA]: {
-        endpoint: '/api/echo/',
-        method: 'POST',
-        body: JSON.stringify({message: message}),
+        endpoint: '/api/movies/',
+        method: 'GET',
         headers: withAuth({'Content-Type': 'application/json'}),
         types: [
             ECHO_REQUEST, ECHO_SUCCESS, ECHO_FAILURE

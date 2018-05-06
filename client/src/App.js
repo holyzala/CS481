@@ -13,19 +13,17 @@ class App extends Component {
 
     onLogout = (event) => {
         event.preventDefault();
-        console.log(this.props);
         this.props.onLogout();
     };
 
     render() {
+        const movies = this.props.message.map(movie => (<div key={movie.name}>{movie.name} | {movie.notes} | {movie.personal_rating} | {movie.purchase_date}</div>));
         return (
             <div>
                 <h2>Welcome to React</h2>
                 <Button onClick={this.onLogout} color="primary">Logout</Button>
 
-                <p>
-                    {this.props.message}
-                </p>
+                {movies}
             </div>
         );
     }
