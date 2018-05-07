@@ -8,6 +8,7 @@ from rest_framework import status, views, generics, permissions
 from rest_framework.response import Response
 from rest_framework_simplejwt.views import TokenObtainPairView
 from .serializers import MessageSerializer, MyTokenObtainPairSerializer, UserSerializer
+import requests
 
 
 class EchoView(views.APIView):
