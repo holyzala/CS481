@@ -5,6 +5,7 @@ import {Button} from 'reactstrap';
 import {logout} from './actions/auth'
 import {echo} from './actions/echo'
 import {serverMessage} from './reducers'
+import Movie from './containers/Movie'
 
 class App extends Component {
     componentDidMount() {
@@ -17,7 +18,7 @@ class App extends Component {
     };
 
     render() {
-        const movies = this.props.message.map(movie => (<div key={movie.name}>{movie.name} | {movie.notes} | {movie.personal_rating} | {movie.purchase_date}</div>));
+        const movies = this.props.message.map(item => (<Movie key={item.movie_id} movie={item}></Movie>));
         return (
             <div>
                 <h2>Welcome to React</h2>
