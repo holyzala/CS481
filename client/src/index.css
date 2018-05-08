@@ -20,3 +20,9 @@ body {
     align-items: center;
     justify-content: center;
 }
+
+#logout {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+}

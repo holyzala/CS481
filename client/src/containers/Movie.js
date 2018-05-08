@@ -16,10 +16,13 @@ export default class Movie extends Component {
 
     render() {
         return (
-            <div>
-                <img src={this.state.details.Poster} alt={this.state.details.Title} width="150"/>
-                {this.state.details.Title}
-            </div>
+            <button id={this.props.movie.movie_id} onClick={this.props.click}
+                    style={{background: "Transparent no-repeat", border: "none", outline: "none", position: "relative",
+                        zIndex: "1"}}>
+                <img src={this.state.details.Poster} alt={this.state.details.Title} width="150"
+                     style={{position: "relative", zIndex: "-1"}}/>
+                <span style={{position: "relative", zIndex: "-1"}}>{this.state.details.Title}</span>
+            </button>
         )
     }
 }

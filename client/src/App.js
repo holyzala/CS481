@@ -6,8 +6,15 @@ import {logout} from './actions/auth'
 import {echo} from './actions/echo'
 import {serverMessage} from './reducers'
 import Movie from './containers/Movie'
+import Details from "./containers/Details";
 
 class App extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            selected: null
+        }
+    }
     componentDidMount() {
         this.props.fetchMessage('Hi!')
     }
@@ -17,14 +24,30 @@ class App extends Component {
         this.props.onLogout();
     };
 
+    getDetails = (event) => {
+        console.log(event.target.id);
+        const movie = this.props.message.reduce((acc, curr) => curr.movie_id === event.target.id ? curr : acc, null);
+        this.setState({selected: movie});
+    };
+
+    noDetails = () => this.setState({selected: null});
+
+    getDisplay = () => {
+        if (this.state.selected) {
+            return <Details movie={this.state.selected} back={this.noDetails}/>;
+        }
+        return this.props.message.map(item => (
+            <Movie key={item.movie_id} movie={item} click={this.getDetails}/>
+        ));
+    };
+
     render() {
-        const movies = this.props.message.map(item => (<Movie key={item.movie_id} movie={item}></Movie>));
         return (
             <div>
                 <h2>Welcome to React</h2>
-                <Button onClick={this.onLogout} color="primary">Logout</Button>
+                <Button id="logout" onClick={this.onLogout} color="primary">Logout</Button>
 
-                {movies}
+                {this.getDisplay()}
             </div>
         );
     }
