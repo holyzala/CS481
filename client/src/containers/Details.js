@@ -1,25 +1,12 @@
-import React, {Component} from 'react';
+import React, {PureComponent} from 'react';
 import {Button} from 'reactstrap';
 
-export default class Details extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            details: {}
-        }
-    }
-
-    componentDidMount() {
-        fetch('http://www.omdbapi.com/?apikey=e1a66376&i=' + this.props.movie.movie_id)
-            .then(result => result.json())
-            .then(data => this.setState({details: data}))
-    }
-
+export default class Details extends PureComponent {
     render() {
         return (
             <div>
-                <div>Title: {this.state.details.Title}</div>
-                <div>ID: {this.state.details.imdbID}</div>
+                <div>Title: {this.props.movie.title}</div>
+                <div>ID: {this.props.movie.movie_id}</div>
                 <div>Purchase Date: {this.props.movie.purchase_date}</div>
                 <div>Location: {this.props.movie.location}</div>
                 <div>Notes: {this.props.movie.notes}</div>

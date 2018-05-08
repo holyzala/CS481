@@ -21,9 +21,6 @@ class MyTokenObtainPairSerializer(TokenObtainPairSerializer):
 class UserSerializer(serializers.Serializer):
     password = serializers.CharField(max_length=128)
     username = serializers.CharField(max_length=150)
-#    first_name = serializers.CharField(max_length=30, allow_blank=True, allow_null=True, default=None)
-#    last_name = serializers.CharField(max_length=150, allow_blank=True, allow_null=True, default=None)
-#    email = serializers.EmailField(allow_blank=True, allow_null=True, default=None)
 
     def create(self, validated_data):
         password = validated_data.pop("password")
@@ -42,12 +39,6 @@ class UserSerializer(serializers.Serializer):
         return instance
 
 
-class UserSerializer2(serializers.ModelSerializer):
-    class Meta:
-        model = User
-        fields = ('id', 'username')
-
-
 class MessageSerializer(serializers.Serializer):
     message = serializers.CharField()
 
@@ -55,4 +46,4 @@ class MessageSerializer(serializers.Serializer):
 class MyMovieSerializer(serializers.ModelSerializer):
         class Meta:
             model = MyMovie
-            fields = ('movie_id','purchase_date','location','personal_rating','notes')
+            exclude = ['owner']
