@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import {Button} from 'reactstrap';
 
 export default class Details extends Component {
     constructor(props) {
@@ -22,7 +23,7 @@ export default class Details extends Component {
                 <div>Purchase Date: {this.props.movie.purchase_date}</div>
                 <div>Location: {this.props.movie.location}</div>
                 <div>Notes: {this.props.movie.notes}</div>
-                <button onClick={this.props.back}>back</button>
+                <Button onClick={this.props.back} color="primary">Back</Button>
             </div>
         )
     }
