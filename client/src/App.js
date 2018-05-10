@@ -46,12 +46,15 @@ class App extends Component {
         if (this.state.adding) {
             return <AddForm cancel={this.cancelAdd}/>
         }
-        return this.props.message.map(item => (
+        let movies = this.props.message.map(item => (
+            <Movie key={item.movie_id} movie={item} click={this.getDetails}/>
+        ));
+        return (
             <div>
                 <Button onClick={this.onAdd} color="secondary">Add a movie</Button>
-                <Movie key={item.movie_id} movie={item} click={this.getDetails}/>
+                {movies}
             </div>
-        ));
+        )
     };
 
     render() {
