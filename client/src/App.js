@@ -5,14 +5,16 @@ import {Button} from 'reactstrap';
 import {logout} from './actions/auth'
 import {echo} from './actions/echo'
 import {serverMessage} from './reducers'
-import Movie from './containers/Movie'
-import Details from "./containers/Details";
+import Movie from './components/Movie'
+import Details from "./components/Details";
+import AddForm from "./components/AddForm";
 
 class App extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            selected: null
+            selected: null,
+            adding: false
         }
     }
 
@@ -25,6 +27,8 @@ class App extends Component {
         this.props.onLogout();
     };
 
+    onAdd = () => this.setState({adding: true});
+
     getDetails = (event) => {
         console.log(event.target.id);
         const movie = this.props.message.reduce((acc, curr) => curr.movie_id === event.target.id ? curr : acc, null);
@@ -33,12 +37,20 @@ class App extends Component {
 
     noDetails = () => this.setState({selected: null});
 
+    cancelAdd = () => this.setState({adding: false});
+
     getDisplay = () => {
         if (this.state.selected) {
-            return <Details movie={this.state.selected} back={this.noDetails}/>;
+            return <Details movie={this.state.selected} back={this.noDetails}/>
+        }
+        if (this.state.adding) {
+            return <AddForm cancel={this.cancelAdd}/>
         }
         return this.props.message.map(item => (
-            <Movie key={item.movie_id} movie={item} click={this.getDetails}/>
+            <div>
+                <Button onClick={this.onAdd} color="secondary">Add a movie</Button>
+                <Movie key={item.movie_id} movie={item} click={this.getDetails}/>
+            </div>
         ));
     };
 
@@ -47,7 +59,6 @@ class App extends Component {
             <div>
                 <h2>Your Movie List</h2>
                 <Button id="logout" onClick={this.onLogout} color="primary">Logout</Button>
-
                 {this.getDisplay()}
             </div>
         );
