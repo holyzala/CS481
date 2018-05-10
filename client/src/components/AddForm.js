@@ -24,8 +24,12 @@ export default class AddForm extends Component {
     onChange = (event) => {
         clearTimeout(this.state.timer);
         this.setState({searchString: event.target.value});
-        let timer = setTimeout(this.getMovie, 1000);
-        this.setState({timer: timer});
+        if (event.target.value === "") {
+            this.setState({movies: []});
+        } else {
+            let timer = setTimeout(this.getMovie, 1000);
+            this.setState({timer: timer});
+        }
     };
 
     render() {
