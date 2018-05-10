@@ -15,6 +15,7 @@ class App extends Component {
             selected: null
         }
     }
+
     componentDidMount() {
         this.props.fetchMessage('Hi!')
     }
