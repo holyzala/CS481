@@ -6,16 +6,26 @@ export default class AddForm extends Component {
         super(props);
         this.state = {
             movies: [],
-            selected: null
+            selected: null,
+            timer: null,
+            searchString: ""
         }
     }
 
-    onChange = (event) => {
-        fetch("http://www.omdbapi.com/?apikey=e1a66376&s=" + event.target.value)
+    getMovie = () => {
+        fetch("http://www.omdbapi.com/?apikey=e1a66376&s=" + this.state.searchString)
             .then(result => result.json())
             .then(data => {
                 if (data.Response === "True") this.setState({movies: data.Search});
-                else this.setState({movies: []})})
+                else this.setState({movies: []})
+            })
+    };
+
+    onChange = (event) => {
+        clearTimeout(this.state.timer);
+        this.setState({searchString: event.target.value});
+        let timer = setTimeout(this.getMovie, 1000);
+        this.setState({timer: timer});
     };
 
     render() {
