@@ -1,7 +1,9 @@
 import React, {Component} from 'react';
 import {Button} from 'reactstrap';
+import {connect} from "react-redux";
+import {addMovie} from "../actions/echo";
 
-export default class AddForm extends Component {
+class AddForm extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -34,17 +36,60 @@ export default class AddForm extends Component {
 
     onSelect = (movie) => this.setState({selected: movie});
 
+    submit = (e) => {
+        e.preventDefault();
+        this.props.addMovie({
+            movie_id: this.state.selected.imdbID,
+            title: this.state.selected.Title,
+            poster: this.state.selected.Poster,
+            purchase_date: e.target[0].value,
+            location: e.target[1].value,
+            rating: e.target[2].value,
+            notes: e.target[3].value
+        });
+        this.setState({movies: [], selected: null, searchString: "", timer: null});
+        this.props.cancel();
+    };
+
+    getDisplay = () => {
+        if (this.state.selected) {
+            return (
+                <form action="#" method="get" onSubmit={this.submit}>
+                    <label htmlFor="purchase">Purchase Date:</label>
+                    <input id="purchase" type="date" required={true}/>
+                    <label htmlFor="location">Location:</label>
+                    <input id="location" type="text"/>
+                    <label htmlFor="rating">Personal Rating:</label>
+                    <input id="rating" type="number"/>
+                    <label htmlFor="notes">Notes:</label>
+                    <input id="notes" type="text"/>
+                    <input type="submit"/>
+                </form>
+            )
+        } else {
+            let movies = this.state.movies.map(movie => (
+                <img key={movie.imdbID} src={movie.Poster} alt={movie.Title} height="120px"
+                     onClick={() => this.onSelect(movie)}/>
+            ));
+            return (
+                <div>
+                    <input type="text" onChange={this.onChange}/>
+                    <Button onClick={this.props.cancel}>Cancel</Button>
+                    {movies}
+                </div>
+            )
+        }
+    };
+
     render() {
-        let movies = this.state.movies.map(movie => (
-            <img key={movie.imdbID} src={movie.Poster} alt={movie.Title} height="120px"
-                 onClick={() => this.onSelect(movie)}/>
-        ));
-        return (
-            <div>
-                <input type="text" onChange={this.onChange}/>
-                <Button onClick={this.props.cancel}>Cancel</Button>
-                {movies}
-            </div>
-        )
+        return this.getDisplay()
     }
 }
+
+const mapDispatchToProps = (dispatch) => ({
+    addMovie: (myMovie) => {
+        dispatch(addMovie(myMovie))
+    }
+});
+
+export default connect(null, mapDispatchToProps)(AddForm);

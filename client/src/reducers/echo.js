@@ -10,9 +10,13 @@ export default (state = initialState, action) => {
             return {
                 message: action.payload
             };
+        case echo.ADD_MOVIE_SUCCESS:
+            return {
+                message: state.message.concat(action.payload)
+            };
         default:
             return state
     }
 }
 
-export const serverMessage = (state) => state.message
+export const serverMessage = (state) => state.message;

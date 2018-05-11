@@ -17,6 +17,7 @@ export const refreshToken = state => fromAuth.refreshToken(state.auth);
 export const isRefreshTokenExpired = state => fromAuth.isRefreshTokenExpired(state.auth);
 export const authErrors = state => fromAuth.errors(state.auth);
 export const serverMessage = state => fromEcho.serverMessage(state.echo);
+export const addMovie = state => fromEcho.serverMessage(state.addMovie);
 
 export function withAuth(headers = {}) {
     return (state) => ({
