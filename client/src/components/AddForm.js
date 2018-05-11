@@ -58,11 +58,11 @@ class AddForm extends Component {
                     <label htmlFor="purchase">Purchase Date:</label>
                     <input id="purchase" type="date" required={true}/>
                     <label htmlFor="location">Location:</label>
-                    <input id="location" type="text"/>
+                    <input id="location" type="text" required={true}/>
                     <label htmlFor="rating">Personal Rating:</label>
-                    <input id="rating" type="number"/>
+                    <input id="rating" type="number" required={true}/>
                     <label htmlFor="notes">Notes:</label>
-                    <input id="notes" type="text"/>
+                    <input id="notes" type="text" required={true}/>
                     <input type="submit"/>
                 </form>
             )
