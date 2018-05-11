@@ -30,7 +30,6 @@ class App extends Component {
     onAdd = () => this.setState({adding: true});
 
     getDetails = (event) => {
-        console.log(event.target.id);
         const movie = this.props.message.reduce((acc, curr) => curr.movie_id === event.target.id ? curr : acc, null);
         this.setState({selected: movie});
     };

@@ -32,8 +32,13 @@ export default class AddForm extends Component {
         }
     };
 
+    onSelect = (movie) => this.setState({selected: movie});
+
     render() {
-        let movies = this.state.movies.map(movie => <img src={movie.Poster} alt={movie.Title} height="120px"/>);
+        let movies = this.state.movies.map(movie => (
+            <img key={movie.imdbID} src={movie.Poster} alt={movie.Title} height="120px"
+                 onClick={() => this.onSelect(movie)}/>
+        ));
         return (
             <div>
                 <input type="text" onChange={this.onChange}/>

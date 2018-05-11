@@ -7,7 +7,6 @@ const initialState = {
 export default (state = initialState, action) => {
     switch (action.type) {
         case echo.ECHO_SUCCESS:
-            console.log(action);
             return {
                 message: action.payload
             };
