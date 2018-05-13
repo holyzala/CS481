@@ -20,7 +20,7 @@ Server and Client code for a personal movie database
 
 # Instructions to run the client
 ```
-> cd CS481/client
+> cd client
 > npm install
 > npm run start
 ```
