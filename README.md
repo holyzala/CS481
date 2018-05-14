@@ -3,8 +3,11 @@ Server and Client code for a personal movie database
 
 # Requirements
 [Python 3](https://www.python.org/downloads)
+
 [Pipenv](https://docs.pipenv.org)
+
 [git](https://git-scm.com/downloads)
+
 [nodejs](https://nodejs.org/en/download)
 
 # Get the project
