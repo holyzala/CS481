@@ -1,5 +1,12 @@
-# CS481
+## CS481
 Server and Client code for a personal movie database
+
+# Requirements
+```
+python3
+pipenv
+git
+```
 
 # Get the project
 ```
@@ -10,9 +17,8 @@ Server and Client code for a personal movie database
 # Instructions to run the server
 ```
 > cd server
-> python3 -m virtualenv env
-> . Env/bin/activate
-> pip install -r requirements.txt
+> pipenv install
+> pipenv shell
 > python manage.py migrate
 > python manage.py createsuperuser
 > python manage.py runserver
