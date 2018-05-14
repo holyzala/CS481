@@ -1,7 +1,7 @@
-## CS481
+# CS481
 Server and Client code for a personal movie database
 
-# Requirements
+## Requirements
 [Python 3](https://www.python.org/downloads)
 
 [Pipenv](https://docs.pipenv.org)
@@ -10,13 +10,13 @@ Server and Client code for a personal movie database
 
 [nodejs](https://nodejs.org/en/download)
 
-# Get the project
+## Get the project
 ```
 > git clone git@github.com:holyzala/CS481.git
 > cd CS481
 ```
 
-# Instructions to run the server
+### Instructions to run the server
 ```
 > cd server
 > pipenv install
@@ -26,7 +26,7 @@ Server and Client code for a personal movie database
 > python manage.py runserver
 ```
 
-# Instructions to run the client
+### Instructions to run the client
 ```
 > cd client
 > npm install
