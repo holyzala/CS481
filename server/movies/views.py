@@ -1,34 +1,34 @@
-from rest_framework import status, views, generics
-from rest_framework.response import Response
 from django.contrib.auth.models import User
-from .serializers import UserSerializer, MessageSerializer, MyMovieSerializer
+from rest_framework import generics, permissions
+from rest_framework_simplejwt.views import TokenObtainPairView
 from .models import MyMovie
 from .permissions import IsOwner
-from rest_framework import status, views, generics, permissions
-from rest_framework.response import Response
-from rest_framework_simplejwt.views import TokenObtainPairView
-from .serializers import MessageSerializer, MyTokenObtainPairSerializer, UserSerializer
-import requests
-
-
-class EchoView(views.APIView):
-    def post(self, request, *args, **kwargs):
-        serializer = MessageSerializer(data=request.data)
-        serializer.is_valid(raise_exception=True)
-        return Response(serializer.data, status=status.HTTP_201_CREATED)
+from .serializers import MyMovieSerializer, MyTokenObtainPairSerializer, UserSerializer
 
 
 class MyTokenObtainPairView(TokenObtainPairView):
+    """
+    Takes a set of user credentials and returns an access and refresh JSON web
+    token pair to prove the authentication of those credentials.
+    """
     serializer_class = MyTokenObtainPairSerializer
 
 
 class UserList(generics.ListCreateAPIView):
+    """
+    get: List all the users
+    post: Create a new user
+    """
     queryset = User.objects.all()
     serializer_class = UserSerializer
     permission_classes = [permissions.AllowAny]
 
 
 class GetMyMovieList(generics.ListCreateAPIView):
+    """
+    get: List all the current user's movies
+    post: add a new movie for the current user
+    """
     serializer_class = MyMovieSerializer
 
     def perform_create(self, serializer):
@@ -41,6 +41,12 @@ class GetMyMovieList(generics.ListCreateAPIView):
 
 
 class GetMyMovie(generics.RetrieveUpdateDestroyAPIView):
+    """
+    get: Get the details of a specific movie the user owns
+    put: update the movie
+    patch: update the movie
+    delete: remove the movie from the user's list
+    """
     queryset = MyMovie.objects.all()
     serializer_class = MyMovieSerializer
     lookup_field = 'name'

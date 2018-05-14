@@ -9,6 +9,7 @@ djangorestframework = "*"
 djangorestframework-simplejwt = "*"
 requests = "*"
 coreapi = "*"
+drf-yasg = "*"
 
 [dev-packages]
 
