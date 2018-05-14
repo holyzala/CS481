@@ -26,6 +26,9 @@ Server and Client code for a personal movie database
 > python manage.py runserver
 ```
 
+### Docs
+Once the server is running the swagger docs can be accessed at http://localhost:8000/docs
+
 ### Instructions to run the client
 ```
 > cd client
